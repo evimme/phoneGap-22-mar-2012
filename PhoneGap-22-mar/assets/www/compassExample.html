@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Compass Example</title>
+
+    <script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // The watch id references the current `watchHeading`
+    var watchID = null;
+
+    // Wait for PhoneGap to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // PhoneGap is ready
+    //
+    function onDeviceReady() {
+        startWatch();
+    }
+
+    // Start watching the compass
+    //
+    function startWatch() {
+
+        // Update compass every 3 seconds
+        var options = { frequency: 100 };
+
+        watchID = navigator.compass.watchHeading(onSuccess, onError, options);
+    }
+
+    // Stop watching the compass
+    //
+    function stopWatch() {
+        if (watchID) {
+            navigator.compass.clearWatch(watchID);
+            watchID = null;
+        }
+    }
+
+    // onSuccess: Get the current heading
+    //
+    function onSuccess(heading) {
+    	oppgaveB(heading);        
+    }
+    
+    function oppgaveA(heading){
+    	var element = document.getElementById('heading');        
+    	element.innerHTML = 'Heading: ' + heading.magneticHeading;
+    }
+    
+    function oppgaveB(heading){
+        var element = document.getElementById('heading');
+        if(heading.magneticHeading<45)element.innerHTML = 'N';
+        else if(heading.magneticHeading>=45 && heading.magneticHeading<135)element.innerHTML = 'Ø';
+        else if(heading.magneticHeading>=135 && heading.magneticHeading<225)element.innerHTML = 'S';
+        else if(heading.magneticHeading>=225 && heading.magneticHeading<315)element.innerHTML = 'V';
+        else if(heading.magneticHeading>315)element.innerHTML = 'N';    
+    }
+    
+
+    // onError: Failed to get the heading
+    //
+    function onError(compassError) {
+        alert('Compass error: ' + compassError.code);
+    }
+
+    </script>
+  </head>
+  <body>
+    <h1><div id="heading">Waiting for heading...</div></h1>
+    <button onclick="startWatch();">Start Watching</button>
+    <button onclick="stopWatch();">Stop Watching</button>
+  </body>
+</html>
