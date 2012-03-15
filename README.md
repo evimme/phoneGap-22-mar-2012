@@ -6,7 +6,6 @@ PhoneGap overview
 ### PhoneGap development
 * HTML5, CSS, javaScript for non-native development
 * Java for Android development.
-* 
 
 ### Supported systems
 * iPhone
@@ -41,6 +40,10 @@ Installation
     The descriptions can also be found in the downloaded PhoneGap package:
 			/doc/guide_getting-started_index.md.html#Getting Started Guides
 	The files mentioned are available at \\SPICA\Winapps\PhoneGap\
+	
+3.  Make sure that the driver for your phone is installed and that your phone is configured so 
+	that you may deploy applications from your computer.
+
 
 Task 1 -
 ========
